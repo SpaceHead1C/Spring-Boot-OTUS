@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UsersRepository;
+import com.example.demo.rest.UsersController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UsersControllerTest.class)
+@WebMvcTest(UsersController.class)
 public class UsersControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -36,6 +37,6 @@ public class UsersControllerTest {
                 }}));
         this.mvc.perform(MockMvcRequestBuilders.get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[{\"user_id\":\"1\",\"user_name\":\"Ivan\"}]"));
+                .andExpect(content().string("[{\"user_name\":\"Ivan\",\"user_id\":\"1\"}]"));
     }
 }
